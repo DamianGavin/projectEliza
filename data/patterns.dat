@@ -1,0 +1,8 @@
+name is (.*)
+Hello %s, it's nice to meet you.;It's nice to meet you %s.;%s? That's a funny name.
+I like (.*)
+Why do you like %s.;You like %s? Are you crazy?
+(sorry)
+You don't need to say sorry.
+Why do you (.*)
+Why do you think I %s?;Would you prefer if I didn't %s?
