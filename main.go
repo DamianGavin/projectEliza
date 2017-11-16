@@ -13,19 +13,21 @@ import (
 
 func main() {
 
-	fs := http.FileServer(http.Dir("./static"))
+	dir := http.Dir("./static")
+
+	fileServer := http.FileServer(dir)
 
 	// Handle "/" the root resource
 	// "/" handles EVERYTHING coming in, unless there is a more specific path eg /ask
 	http.Handle("/", fileServer)
 
 	// "/ask" resource
-	http.HandleFunc("/ask", HandleAsk)
+	http.HandleFunc("/ask", handleAsk)
 
 	// actually starts the web server!
 	http.ListenAndServe(":8080", nil)
 }
-func HandleAsk(writer http.ResponseWriter, request *http.Request) {
+func handleAsk(writer http.ResponseWriter, request *http.Request) {
 	// fmt.Fprintln(writer, "hi there! You went to /ask")
 	// fmt.Fprintln(writer, "<h1> this is a web site!</h1>") go sends a plain string -> browser knows what to do with it as it is just html
 	// ask eliza a question
