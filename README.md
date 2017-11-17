@@ -27,7 +27,7 @@ This repository can be found at https://github.com/DamianGavin/projectEliza
 
 First you must have "Go" on your computer. This can be found and downloaded at https://golang.org/.
 If you navigate to the folder that contains these files you can type :
-go run <file name> to run the code.
+go run  .\main.go to run the code.
 
 ## Tests
 
