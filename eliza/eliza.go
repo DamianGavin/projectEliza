@@ -1,3 +1,4 @@
+//Damian Gavin
 //adpted from https://gist.github.com/ianmcloughlin/c4c2b8dc586d06943f54b75d9e2250fe
 
 package eliza
@@ -12,24 +13,24 @@ import (
 	"time"
 )
 
-var reflections map[string]string
+var reflections map[string]string //map of strings of type string
 
-type response struct {
-	re      *regexp.Regexp
+type Response struct { //a struct called response, contains regex and a string array(or list)of answers
+	rex     *regexp.Regexp
 	answers []string
 }
 
-func newResponse(pattern string, answers []string) response {
-	response := response{}
-	re := regexp.MustCompile(pattern)
-	response.re = re
+func NewResponse(pattern string, answers []string) Response {
+	response := Response{}
+	rex := regexp.MustCompile(pattern)
+	response.rex = rex
 	response.answers = answers
 	return response
 }
 
-func buildResponseList() []response {
+func buildResponseList() []Response {
 
-	allResponses := []response{}
+	allResponses := []Response{}
 
 	file, err := os.Open("./data/patterns.dat")
 	if err != nil { // there IS an error
@@ -49,7 +50,7 @@ func buildResponseList() []response {
 		answersAsStr := scanner.Text()
 
 		answerList := strings.Split(answersAsStr, ";")
-		resp := newResponse(patternStr, answerList)
+		resp := NewResponse(patternStr, answerList)
 		allResponses = append(allResponses, resp)
 	}
 
@@ -84,7 +85,7 @@ func subWords(original string) string {
 			"me":     "you",
 		}
 	}
-	// when we're we can be sure reflections map is populated.
+	// If I get to here reflections map is populated.
 
 	words := strings.Split(original, " ")
 
@@ -107,8 +108,8 @@ func Ask(userInput string) string {
 
 	for _, resp := range responses { // look at every single response/pattern/answers
 
-		if resp.re.MatchString(userInput) {
-			match := resp.re.FindStringSubmatch(userInput)
+		if resp.rex.MatchString(userInput) {
+			match := resp.rex.FindStringSubmatch(userInput)
 			//match[0] is full match, match[1] is the capture group
 			captured := match[1]
 

@@ -4,7 +4,7 @@ Chatbot in Golang
 
 ## Overview
 
-In this project I have created a chatbot web application in Go. Users will be able to visit the web application through their browser, type in sentences such as “Hi, my name is John.” and the web application will reply with sentences such as “Hello John, how are you?” You are free to use your artistic license in creating the chatbot, such as by giving it a certain type of personality, but you should be guided by the ELIZA program. If you wish to use any technique to enhance your chatbot, such as machine learning methods, that is okay as long as the chatbot works
+In this project I have created a chatbot web application in Go. Users will be able to visit the web application through their browser, type in sentences such as “Hi, my name is John.” and the web application will reply with sentences such as “Hello John, how are you?” 
 
 ## Contents
 
@@ -33,7 +33,7 @@ go run  .\main.go to run the code.
 
 Describe and show how to run the tests with code examples.
 **EXAMPLE**
-``` PS C:\Users\damot\OneDrive - 
+``` PS C:\Users\damot\OneDrive - GMIT\year326_10\DataRepAndQuery\projectEliza> go run .\main.go
 ```
 ## Helpful links
 

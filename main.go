@@ -22,12 +22,12 @@ func main() {
 	http.Handle("/", fileServer)
 
 	// "/ask" resource
-	http.HandleFunc("/ask", handleAsk)
+	http.HandleFunc("/ask", HandleAsk)
 
 	// actually starts the web server!
 	http.ListenAndServe(":8080", nil)
 }
-func handleAsk(writer http.ResponseWriter, request *http.Request) {
+func HandleAsk(writer http.ResponseWriter, request *http.Request) {
 	// fmt.Fprintln(writer, "hi there! You went to /ask")
 	// fmt.Fprintln(writer, "<h1> this is a web site!</h1>") go sends a plain string -> browser knows what to do with it as it is just html
 	// ask eliza a question
