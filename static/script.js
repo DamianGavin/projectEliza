@@ -32,7 +32,7 @@ userInput.keypress(function(event){
     $.get("/ask", queryParameters).done(function(resp){
         // this code will execute when the request gets a response.
         setTimeout(function(){ // wait 1 second then add element.
-            conversation.append("<li>" + resp + "</li>");
+            conversation.append("<li class=\"list-group\">" + resp + "</li>");
         }, 1000);
         
     }).fail(function(){ // this will run whenever anything goes wrong.
