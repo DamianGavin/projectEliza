@@ -105,13 +105,15 @@ func Ask(userInput string) string {
 
 	// My name is bob
 	responses := buildResponseList()
-
+	fmt.Println(responses)
 	for _, resp := range responses { // look at every single response/pattern/answers
-
+		fmt.Println("User input: " + userInput)
 		if resp.rex.MatchString(userInput) {
 			match := resp.rex.FindStringSubmatch(userInput)
 			//match[0] is full match, match[1] is the capture group
 			captured := match[1]
+			fmt.Println(match)
+			fmt.Println(captured)
 
 			// remove punctuation here! <------
 

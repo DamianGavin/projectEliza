@@ -35,7 +35,7 @@ func HandleAsk(writer http.ResponseWriter, request *http.Request) {
 	// "user-input"
 	// example URL
 	//
-	userInput := request.URL.Query().Get("user-input")
+	userInput := request.URL.Query().Get("userInput")
 	answer := eliza.Ask(userInput) // takes the input we got from the request, and sends it to the Ask function
 	fmt.Fprintf(writer, answer)    // writes the result back into the ResponseWriter
 
