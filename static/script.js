@@ -25,18 +25,18 @@ userInput.keypress(function(event){
         "userInput" : text
     }
 
-    conversation.append("<li class=\"list-group\">" + text + "<li class=\"list-group\">");
+    conversation.append("<li id='user' align='right' class=\"list-group\">" + text + "<li class=\"list-group\">");
 
     // sample url generated.s 
     //http://localhost:8080/ask?user-input=hello%20world
     $.get("/ask", queryParameters).done(function(resp){
         // this code will execute when the request gets a response.
         setTimeout(function(){ // wait 1 second then add element.
-            conversation.append("<li class=\"list-group\">" + resp + "<li class=\"list-group\">");
+            conversation.append("<li id='el' align='left' class=\"list-group\">" + resp + "<li class=\"list-group\">");
         }, 1000);
         
     }).fail(function(){ // this will run whenever anything goes wrong.
-        conversation.append("<li class=\"list-group\">the doctor is out, sorry.</li class=\"list-group\">");
+        conversation.append("<li class=\"list-group\">Sorry, Connection has failed.</li class=\"list-group\">");
     });
 
     window.scrollTo(0,document.body.scrollHeight);

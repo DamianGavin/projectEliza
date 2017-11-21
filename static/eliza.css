@@ -1,0 +1,16 @@
+#user{
+float:right;
+border: 1px solid #000;
+border-radius: 12px;
+background-color: rgba(120,128,128,0.5);
+width: auto;
+padding:5px;
+}
+#el{
+float:left;
+border: 1px solid #000;
+border-radius: 12px;
+background-color: rgba(120,128,128,0.7);
+width: auto;
+padding:5px;
+}

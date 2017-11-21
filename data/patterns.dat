@@ -14,3 +14,10 @@ Why don\'?t you ([^\?]*)\??
 Do you really think I don't %s?.;Perhaps eventually I will %s.;Do you really want me to %s?.
 Why can\'?t I ([^\?]*)\??
 Do you think you should be able to %s?;If you could %s, what would you do?;I don't know -- why can't you %s?;Have you really tried?
+I can\'?t (.*)
+How do you know you can't %s?;Perhaps you could %s if you tried.;What would it take for you to %s?
+I am (.*)
+Did you come to me because you are %s?;How long have you been %s?;How do you feel about being %s?
+Are you ([^\?]*)\??
+Why does it matter whether I am %s?;Would you prefer it if I were not %s?;Perhaps you believe I am %s.;I may be %s -- what do you think?
+
