@@ -50,7 +50,7 @@ func buildResponseList() []Response {
 		answersAsStr := scanner.Text()
 
 		answerList := strings.Split(answersAsStr, ";")
-		resp := NewResponse(patternStr, answerList)
+		resp := NewResponse("(?i)"+patternStr, answerList)
 		allResponses = append(allResponses, resp)
 	}
 
