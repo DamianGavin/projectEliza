@@ -6,3 +6,11 @@ Why do you like %s.;You like %s? Are you crazy?
 You don't need to say sorry.
 Why do you (.*)
 Why do you think I %s?;Would you prefer if I didn't %s?
+Hello (.*)
+Hi.;How are you.;It's nice to meet you.
+I need (.*)
+Why do you need %s?;Would it relly help you to get %s?;Are you sure you need %s?
+Why don\'?t you ([^\?]*)\??
+Do you really think I don't %s?.;Perhaps eventually I will %s.;Do you really want me to %s?.
+Why can\'?t I ([^\?]*)\??
+Do you think you should be able to %s?;If you could %s, what would you do?;I don't know -- why can't you %s?;Have you really tried?

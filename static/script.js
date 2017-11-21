@@ -38,4 +38,6 @@ userInput.keypress(function(event){
     }).fail(function(){ // this will run whenever anything goes wrong.
         conversation.append("<li class=\"list-group\">the doctor is out, sorry.</li class=\"list-group\">");
     });
+
+    window.scrollTo(0,document.body.scrollHeight);
 });
