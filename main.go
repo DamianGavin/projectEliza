@@ -32,7 +32,7 @@ func HandleAsk(writer http.ResponseWriter, request *http.Request) {
 	// fmt.Fprintln(writer, "<h1> this is a web site!</h1>") go sends a plain string -> browser knows what to do with it as it is just html
 	// ask eliza a question
 	// write the answer to the writer
-	// "user-input"
+	// "userInput"
 	// example URL
 	//
 	userInput := request.URL.Query().Get("userInput")

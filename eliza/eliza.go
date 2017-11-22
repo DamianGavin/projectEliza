@@ -15,44 +15,43 @@ import (
 
 var reflections map[string]string //map of strings of type string
 
-type Response struct { //a struct called response, contains regex and a string array(or list)of answers
+type response struct { //a struct called response, contains regex and a string array(or list)of answers
 	rex     *regexp.Regexp
 	answers []string
-}
+} //struct
 
-func NewResponse(pattern string, answers []string) Response {
-	response := Response{}
+func newResponse(pattern string, answers []string) response {
+	response := response{}
 	rex := regexp.MustCompile(pattern)
 	response.rex = rex
 	response.answers = answers
 	return response
-}
+} //newResponse
 
-func buildResponseList() []Response {
+func buildResponseList() []response {
 
-	allResponses := []Response{}
+	allResponses := []response{}
 
-	file, err := os.Open("./data/patterns.dat")
-	if err != nil { // there IS an error
-		panic(err) // crash the program
-	}
+	file, err := os.Open("./data/patterns.dat") //data file from static
+	if err != nil {                             // an error
+		panic(err) // escape
+	} //buildResponse
 
-	// file exists!
+	// The file exists!
 	defer file.Close() // this will be called AFTER this function.
 
 	scanner := bufio.NewScanner(file)
 
 	for scanner.Scan() {
-		//fmt.Println(scanner.Text())
 
 		patternStr := scanner.Text()
 		scanner.Scan() // move onto the next line which holds the answers
 		answersAsStr := scanner.Text()
 
-		answerList := strings.Split(answersAsStr, ";")
-		resp := NewResponse("(?i)"+patternStr, answerList)
+		answerList := strings.Split(answersAsStr, ";")     //In my patterns the various eliza responses to one input are seperated by ";"
+		resp := newResponse("(?i)"+patternStr, answerList) //this regex will allow for any case (upper&lower) entered by the user
 		allResponses = append(allResponses, resp)
-	}
+	} //scanner
 
 	return allResponses
 }
@@ -64,8 +63,7 @@ func getRandomAnswer(answers []string) string {
 }
 
 func subWords(original string) string {
-	// https://www.smallsurething.com/implementing-the-famous-eliza-chatbot-in-python/
-	//reflections = readLines("file/path")// []string am:are
+	//reflections from https://www.smallsurething.com/implementing-the-famous-eliza-chatbot-in-python/
 
 	if reflections == nil { // map hasn't been made yet
 		reflections = map[string]string{ // will only happen once.
@@ -105,15 +103,15 @@ func Ask(userInput string) string {
 
 	// My name is bob
 	responses := buildResponseList()
-	fmt.Println(responses)
+	//fmt.Println(responses)
 	for _, resp := range responses { // look at every single response/pattern/answers
-		fmt.Println("User input: " + userInput)
+		//fmt.Println("User input: " + userInput)
 		if resp.rex.MatchString(userInput) {
 			match := resp.rex.FindStringSubmatch(userInput)
 			//match[0] is full match, match[1] is the capture group
 			captured := match[1]
-			fmt.Println(match)
-			fmt.Println(captured)
+			//fmt.Println(match)
+			//fmt.Println(captured)
 
 			// remove punctuation here! <------
 
@@ -121,7 +119,7 @@ func Ask(userInput string) string {
 
 			formatAnswer := getRandomAnswer(resp.answers) // get random element.
 
-			if strings.Contains(formatAnswer, "%s") { // string needs to be formatted
+			if strings.Contains(formatAnswer, "%s") { // string needs to be formatted, %s will be sub target
 				formatAnswer = fmt.Sprintf(formatAnswer, captured)
 			}
 			return formatAnswer

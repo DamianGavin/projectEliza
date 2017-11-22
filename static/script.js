@@ -1,10 +1,10 @@
 const conversation = $("#list"); // $ means jquery, it won't get the item without the #
 const userInput = $("#userInput");
- console.log(conversation);
+console.log(conversation);
 
 
-userInput.keypress(function(event){
-    if(event.keyCode !== 13){ // 13 is the keycode for Enter
+userInput.keypress(function (event) {
+    if (event.keyCode !== 13) { // 13 is the keycode for Enter
         return; // do nothing unless the key is enter
     }
     event.preventDefault(); // prevents the form default behaviour which would refresh the page.
@@ -15,29 +15,29 @@ userInput.keypress(function(event){
 
     // trim removes all spaces from either side,
     // if there's no text left, the user doesn't have a question.
-    if(text.trim() == ""){
-    //if(!text.trim()){ 
+    if (text.trim() == "") {
+        //if(!text.trim()){ 
         return;
     }
 
     // a query parameter user-input is expected
     queryParameters = {
-        "userInput" : text
+        "userInput": text
     }
 
     conversation.append("<li id='user' align='right' class=\"list-group\">" + text + "<li class=\"list-group\">");
 
     // sample url generated.s 
     //http://localhost:8080/ask?user-input=hello%20world
-    $.get("/ask", queryParameters).done(function(resp){
+    $.get("/ask", queryParameters).done(function (resp) {
         // this code will execute when the request gets a response.
-        setTimeout(function(){ // wait 1 second then add element.
+        setTimeout(function () { // wait 1 second then add element.
             conversation.append("<li id='el' align='left' class=\"list-group\">" + resp + "<li class=\"list-group\">");
         }, 1000);
-        
-    }).fail(function(){ // this will run whenever anything goes wrong.
+
+    }).fail(function () { // this will run whenever anything goes wrong.
         conversation.append("<li class=\"list-group\">Sorry, Connection has failed.</li class=\"list-group\">");
     });
 
-    window.scrollTo(0,document.body.scrollHeight);
+    window.scrollTo(0, document.body.scrollHeight);
 });

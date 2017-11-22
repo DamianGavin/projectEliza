@@ -2,15 +2,24 @@
 float:right;
 border: 1px solid #000;
 border-radius: 12px;
-background-color: rgba(120,128,128,0.5);
-width: auto;
-padding:5px;
+background-color: rgba(153, 106, 130, 1);
+width: 40%;
+padding:20px;
 }
 #el{
 float:left;
 border: 1px solid #000;
 border-radius: 12px;
-background-color: rgba(120,128,128,0.7);
-width: auto;
-padding:5px;
+background-color: rgba(115, 194, 134, 1);
+width: 40%;
+padding:20px;
+}
+body{
+   /* background-color: red;*/
+    background-image: url("img.jpg");
+      padding-top: 65px; 
+      margin-bottom: 2cm;  
+}
+#list{
+  padding-bottom: 5%;
 }
