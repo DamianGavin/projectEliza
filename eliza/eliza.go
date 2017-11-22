@@ -21,9 +21,11 @@ type response struct {
 	answers []string
 } //struct
 
+//This function reads in a string array of answers and a istring of type patter.
+// It then returns an instance of response with these loaded in.
 func newResponse(pattern string, answers []string) response {
 	response := response{}
-	rex := regexp.MustCompile(pattern)
+	rex := regexp.MustCompile(pattern) //rex is the regular expression
 	response.rex = rex
 	response.answers = answers
 	return response
@@ -52,7 +54,8 @@ func buildResponseList() []response {
 		scanner.Scan() // move onto the next line which holds the answers
 		answersAsStr := scanner.Text()
 
-		answerList := strings.Split(answersAsStr, ";")     //In my patterns the various eliza responses to one input are seperated by ";"
+		answerList := strings.Split(answersAsStr, ";") //In my patterns the various eliza responses to one input are seperated by ";"
+		//so the possible responses are "split" by the ";"
 		resp := newResponse("(?i)"+patternStr, answerList) //this regex will allow for any case (upper&lower) entered by the user
 		allResponses = append(allResponses, resp)
 	} //scanner
@@ -65,30 +68,35 @@ func getRandomAnswer(answers []string) string {
 	rand.Seed(time.Now().UnixNano()) // seed to make it return different values.
 	index := rand.Intn(len(answers)) // Intn generates a number between 0 and num - 1
 	return answers[index]            // can be any element
-}
+}//getRandomAnswer
 
 func subWords(original string) string {
 	//reflections from https://www.smallsurething.com/implementing-the-famous-eliza-chatbot-in-python/
 
+	// Eliza will try to match the regular expressions in the order they appear in 
+	// this file, and stop at the first match. Therefore earlier ones have precedence.
+	//They are already case-insensitive as I've dealt with that at user input in buildResponses
 	if reflections == nil { // map hasn't been made yet
 		reflections = map[string]string{ // will only happen once.
 			"am":     "are",
 			"was":    "were",
 			"i":      "you",
+			"you":	  "i",
 			"i'd":    "you would",
 			"i've":   "you have",
 			"i'll":   "you will",
 			"my":     "your",
 			"are":    "am",
+			"myself": "yourself",
 			"you've": "I have",
 			"you'll": "I will",
 			"your":   "my",
 			"yours":  "mine",
 			"you":    "me",
 			"me":     "you",
-		}
-	}
-	// If I get to here reflections map is populated.
+			"some":	  "any",
+		}//reflections
+	}//if, if I get to here reflections map is populated.
 
 	words := strings.Split(original, " ")
 

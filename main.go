@@ -13,7 +13,7 @@ import (
 
 func main() {
 
-	dir := http.Dir("./static")
+	dir := http.Dir("./static")//static folder 
 
 	fileServer := http.FileServer(dir)
 
@@ -28,13 +28,6 @@ func main() {
 	http.ListenAndServe(":8080", nil)
 }
 func HandleAsk(writer http.ResponseWriter, request *http.Request) {
-	// fmt.Fprintln(writer, "hi there! You went to /ask")
-	// fmt.Fprintln(writer, "<h1> this is a web site!</h1>") go sends a plain string -> browser knows what to do with it as it is just html
-	// ask eliza a question
-	// write the answer to the writer
-	// "userInput"
-	// example URL
-	//
 	userInput := request.URL.Query().Get("userInput")
 	answer := eliza.Ask(userInput) // takes the input we got from the request, and sends it to the Ask function
 	fmt.Fprintf(writer, answer)    // writes the result back into the ResponseWriter
