@@ -14,8 +14,9 @@ import (
 )
 
 var reflections map[string]string //map of strings of type string
-
-type response struct { //a struct called response, contains regex and a string array(or list)of answers
+//a struct called response, contains a compiled regular expression and a string array
+//of answers as from regexp package
+type response struct {
 	rex     *regexp.Regexp
 	answers []string
 } //struct
@@ -28,18 +29,21 @@ func newResponse(pattern string, answers []string) response {
 	return response
 } //newResponse
 
+//buildResponseList reads an array of Responses from a text file.
+//It takes no arguments
 func buildResponseList() []response {
 
 	allResponses := []response{}
-
+	//File takes data from my patterns.dat. If anything goes wrong itwill exit
 	file, err := os.Open("./data/patterns.dat") //data file from static
 	if err != nil {                             // an error
 		panic(err) // escape
-	} //buildResponse
+	} //if err
 
 	// The file exists!
 	defer file.Close() // this will be called AFTER this function.
 
+	//read the file line by line
 	scanner := bufio.NewScanner(file)
 
 	for scanner.Scan() {
@@ -53,8 +57,9 @@ func buildResponseList() []response {
 		allResponses = append(allResponses, resp)
 	} //scanner
 
+	//return the allResponses array
 	return allResponses
-}
+} //buildResponse
 
 func getRandomAnswer(answers []string) string {
 	rand.Seed(time.Now().UnixNano()) // seed to make it return different values.
@@ -110,10 +115,6 @@ func Ask(userInput string) string {
 			match := resp.rex.FindStringSubmatch(userInput)
 			//match[0] is full match, match[1] is the capture group
 			captured := match[1]
-			//fmt.Println(match)
-			//fmt.Println(captured)
-
-			// remove punctuation here! <------
 
 			captured = subWords(captured)
 

@@ -23,3 +23,6 @@ body{
 #list{
   padding-bottom: 5%;
 }
+#failed{
+  color: white;
+}

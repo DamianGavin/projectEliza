@@ -20,7 +20,7 @@ userInput.keypress(function (event) {
         return;
     }
 
-    // a query parameter user-input is expected
+    // a query parameter userInput is expected
     queryParameters = {
         "userInput": text
     }
@@ -36,7 +36,7 @@ userInput.keypress(function (event) {
         }, 1000);
 
     }).fail(function () { // this will run whenever anything goes wrong.
-        conversation.append("<li class=\"list-group\">Sorry, Connection has failed.</li class=\"list-group\">");
+        conversation.append("<li class=\"list-group\" id = 'failed'>Sorry, Connection has failed.</li class=\"list-group\">");
     });
 
     window.scrollTo(0, document.body.scrollHeight);
